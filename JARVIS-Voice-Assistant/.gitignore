@@ -1,0 +1,15 @@
+# Environment
+.env
+venv/
+__pycache__/
+*.pyc
+
+# Logs & generated audio
+logs/
+*.log
+speech.mp3
+*.mp3
+
+# OS files
+.DS_Store
+Thumbs.db
