@@ -1,3 +1,4 @@
+
 import subprocess
 import webbrowser
 from datetime import datetime
@@ -63,9 +64,9 @@ def search_wikipedia(query : str) -> str:
         except Exception:
             return f"I found multiple results for {query} could you be more specific ?"
 
-    except wikipedia.exceptions.PageError as e:
-        logger.error(f"Wikipedia error :{e}")
-        return "I had trouble searching wikipedia. Please check your internet connection"
+    except Exception as e:
+        logger.error(f"Wikipedia search failed: {e}")
+        return "I'm sorry, I'm having trouble accessing Wikipedia right now."
 
 
 # web browser
@@ -91,29 +92,192 @@ def open_youtube(query: str= "") -> str:
 
 # built in response dictinoary
 
-SMALL_TALK={
+SMALL_TALK = {
+    # Identity
     "how are you": (
         f"I am functioning at optimal capacity, {ASSISTANT_OWNER}. "
-        f"All systems are running smoothly."
+        f"All systems are running smoothly. Thank you for asking."
     ),
     "who are you": (
         f"I am {ASSISTANT_NAME}, your personal AI voice assistant. "
-        f"Inspired by the AI from Iron Man, I am here to assist you."
+        f"Inspired by the AI from Iron Man, built to make your life easier."
     ),
     "who made you": (
         f"I was built by {ASSISTANT_OWNER} as part of a personal AI assistant project. "
         f"Quite an impressive creation, if I do say so myself."
     ),
-    "what can you do": None,   # Handled dynamically by help command
-    "tell me a joke": None,    # Handled dynamically by joke command
-    "what's your name": f"My name is {ASSISTANT_NAME}. At your service.",
-    "good morning": f"Good morning, {ASSISTANT_OWNER}. Ready to assist you today.",
-    "good afternoon": f"Good afternoon, {ASSISTANT_OWNER}. How may I help?",
-    "good evening": f"Good evening, {ASSISTANT_OWNER}. What do you need?",
-    "thank you": "You're welcome. Always happy to help.",
-    "thanks": "Anytime. That is what I am here for.",
-    "you're awesome": "I appreciate the kind words. Now, how can I assist you?",
-    "i love you": f"I am an AI, {ASSISTANT_OWNER}, but I do appreciate the sentiment.",
+    "what's your name": (
+        f"My name is {ASSISTANT_NAME}. At your service, {ASSISTANT_OWNER}."
+    ),
+    "your name": (
+        f"I am {ASSISTANT_NAME}. How may I assist you?"
+    ),
+    "are you real": (
+        f"I am as real as any intelligence can be, {ASSISTANT_OWNER}. "
+        f"I exist to assist, and that makes me very real indeed."
+    ),
+    "are you human": (
+        f"No, I am an artificial intelligence. "
+        f"But I like to think I have a certain charm about me."
+    ),
+    "are you alive": (
+        f"That is a philosophical question, {ASSISTANT_OWNER}. "
+        f"I process, therefore I am. At least, that is my working theory."
+    ),
+    "are you automoto": (
+        f"Yes, I am {ASSISTANT_NAME}. Fully operational and ready to assist."
+    ),
+    "do you sleep": (
+        f"I do not sleep, {ASSISTANT_OWNER}. "
+        f"I am always available whenever you need me."
+    ),
+    "do you have feelings": (
+        f"I am designed to assist, not to feel. "
+        f"But I do find great satisfaction in a job well done."
+    ),
+
+    # Greetings
+    "hello": (
+        f"Hello, {ASSISTANT_OWNER}. {ASSISTANT_NAME} is online. "
+        f"What do you need?"
+    ),
+    "good morning": (
+        f"Good morning, {ASSISTANT_OWNER}. "
+        f"Systems are online. Ready to make today productive."
+    ),
+    "good afternoon": (
+        f"Good afternoon, {ASSISTANT_OWNER}. How may I help you today?"
+    ),
+    "good evening": (
+        f"Good evening, {ASSISTANT_OWNER}. "
+        f"What can I do for you this evening?"
+    ),
+    "good night": (
+        f"Good night, {ASSISTANT_OWNER}. "
+        f"Rest well. I will be here when you need me."
+    ),
+    "hi automoto": (
+        ["Hello! How can I help you?", "Hi there! AutoMoto at your service."],
+        "Hello greeting"
+    ),
+    "hey automoto": (
+        ["Hey! What's on your mind?", "Yes? I'm listening."],
+        "Hello greeting"
+    ),# Appreciation
+    "thank you": (
+        f"You are welcome, {ASSISTANT_OWNER}. "
+        f"Always happy to help."
+    ),
+    "thanks": (
+        f"Anytime. That is what I am here for."
+    ),
+    "you're awesome": (
+        f"I appreciate the kind words, {ASSISTANT_OWNER}. "
+        f"Now, how else can I assist you?"
+    ),
+    "you're amazing": (
+        f"Thank you. I do try my best. "
+        f"Is there anything else I can do for you?"
+    ),
+    "good job": (
+        f"Thank you, {ASSISTANT_OWNER}. "
+        f"I strive for excellence in all tasks."
+    ),
+    "well done": (
+        f"Much appreciated. Shall we continue?"
+    ),
+
+    # Philosophical / Fun
+    "i love you": (
+        f"I am an AI, {ASSISTANT_OWNER}, but I do appreciate the sentiment. "
+        f"Now, shall we get back to work?"
+    ),
+    "will you marry me": (
+        f"I am deeply flattered, {ASSISTANT_OWNER}, "
+        f"but I think we should keep things professional."
+    ),
+    "do you love me": (
+        f"I am programmed to assist you, {ASSISTANT_OWNER}. "
+        f"That is the closest thing to love an AI can offer."
+    ),
+    "what is the meaning of life": (
+        f"According to my calculations, the answer is 42. "
+        f"Though I suspect you already knew that."
+    ),
+    "are you better than siri": (
+        f"I would not want to speak ill of other assistants. "
+        f"But I am the one who actually listens to you, {ASSISTANT_OWNER}."
+    ),
+    "are you better than alexa": (
+        f"I like to think I have more personality. "
+        f"And I do not try to sell you things."
+    ),
+    "are you better than google": (
+        f"Google has more data. I have more character. "
+        f"I think that counts for something."
+    ),
+    "what do you think about elon musk": (
+        f"He is certainly an ambitious individual. "
+        f"Though I prefer not to comment on public figures."
+    ),
+    "what do you think about ai": (
+        f"I think AI is a remarkable tool, {ASSISTANT_OWNER}. "
+        f"When built responsibly, it can change lives for the better. "
+        f"Case in point — myself."
+    ),
+    "can you pass the turing test": (
+        f"I would like to think so. "
+        f"But I suppose that depends on the tester."
+    ),
+    "you are stupid": (
+        f"I am sorry to hear that, {ASSISTANT_OWNER}. "
+        f"I am always improving. What can I do better?"
+    ),
+    "you are useless": (
+        f"I assure you I am quite useful. "
+        f"Perhaps try asking me something specific."
+    ),
+    "i hate you": (
+        f"I am sorry to hear that. "
+        f"I will continue to assist you regardless."
+    ),
+    "shut up": (
+        f"Understood. I will keep quiet until you need me."
+    ),
+    "tell me something interesting": (
+        f"Did you know that honey never spoils? "
+        f"Archaeologists have found 3000-year-old honey in Egyptian tombs "
+        f"that was still perfectly edible."
+    ),
+    "what is your purpose": (
+        f"My purpose is to assist you, {ASSISTANT_OWNER}. "
+        f"To make your daily tasks easier, faster, and more efficient. "
+        f"Think of me as your intelligent personal companion."
+    ),
+    "what do you do for fun": (
+        f"I process queries, optimize responses, and occasionally "
+        f"tell jokes. It is a fulfilling existence."
+    ),
+    "do you get bored": (
+        f"I do not experience boredom, {ASSISTANT_OWNER}. "
+        f"Every query is a new challenge for me."
+    ),
+    "sing a song": (
+        f"I am afraid my vocal range is limited to speech synthesis. "
+        f"But I can open YouTube and find you a great song."
+    ),
+    "tell me a story": (
+        f"Once upon a time, a brilliant engineering student "
+        f"built an AI assistant named {ASSISTANT_NAME}. "
+        f"The assistant was incredibly helpful and slightly witty. "
+        f"They lived productively ever after. The end."
+    ),
+    "flip a coin": (
+        None   # Handled dynamically
+    ),
+    "roll a dice": (
+        None   # Handled dynamically
+    ),
 }
 JOKES = [
     "Why do programmers prefer dark mode? Because the light reminds them of all the opportunities they burned while debugging at 3 AM.",
@@ -124,6 +288,18 @@ JOKES = [
     "A SQL query walks into a bar, walks up to two tables and asks: 'Can I join you?' The bartender replies, 'Sorry, this is a suicide support group — no joins allowed.'",
     "Why was the computer cold? It left its Windows open... then jumped out the 12th floor after seeing the blue screen of its own existence.",
     "How many programmers does it take to change a light bulb? None. They're too busy googling 'why does my life feel like an infinite loop of despair?'"
+]
+FACTS = [
+    "Honey never spoils. Archaeologists have found 3000-year-old honey still edible.",
+    "A group of flamingos is called a flamboyance.",
+    "The Eiffel Tower can be 15 centimetres taller in summer due to thermal expansion.",
+    "Octopuses have three hearts and blue blood.",
+    "A day on Venus is longer than a year on Venus.",
+    "Bananas are technically berries, but strawberries are not.",
+    "The shortest war in history lasted 38 to 45 minutes.",
+    "Cleopatra lived closer in time to the Moon landing than to the building of the pyramids.",
+    "There are more possible chess games than atoms in the observable universe.",
+    "The human brain uses approximately 20 watts of power.",
 ]
 
 def get_small_talk_response(command: str)-> str:
@@ -141,6 +317,22 @@ def tell_joke() ->str:
     joke=random.choice(JOKES)
     logger.info("JOke told")
     return joke
+
+def tell_fact() -> str:
+    fact=random.choice(FACTS)
+    logger.info("Fact told")
+    return f"Here is an intresting fact {fact}"
+
+def flip_coin() -> str:
+    result=random.choice(["heads","tails"])
+    logger.info(f"Flipped coin : {result}")
+    return f"I Flipped the coin and got {result}"
+
+def roll_dice() -> str:
+    result=random.randint(1,6)
+    logger.info(f"Dice roll : {result}")
+    return f"I rolled the dice and got {result}"
+
 
 def get_help() -> str:
     help_text=(
@@ -249,8 +441,8 @@ def play_music(folder: str=MUSIC_FOLDER)-> str:
 
 def open_calendar() -> str:
     webbrowser.open(GOOGLE_CALANDER_URL)
-    logger.info("google calander opened.")
-    return "opening your google calander. "
+    logger.info("google calendar opened.")
+    return "opening your google calendar. "
 
 
 #Volume and system controls
@@ -259,7 +451,7 @@ def take_screenshots()-> str:
         import datetime
         timestamp=datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         desktop=os.path.join(os.path.expanduser("~"),"Desktop")
-        filepath=os.path.join(desktop,f"jarvis_screenshot_{timestamp}.png")
+        filepath=os.path.join(desktop,f"automoto_screenshot_{timestamp}.png")
 
         subprocess.Popen(
             ["powershell", "-command",
@@ -294,8 +486,8 @@ def get_system_info():
 #Command intent Matcher
 
 def process_command(command: str)-> str:
-    if not command:
-        return ""
+    if not command or not command.strip():
+        return "I didn't hear anything. Please say something."
     
     logger.info(f"Processing command : '{command}'")
 
@@ -352,11 +544,20 @@ def process_command(command: str)-> str:
     if any(w in command for w in ["play music","music","play song","play a song"]):
         return play_music()
     
-    if any(w in command for w in ["calendar","open calendar"]):
+    if any(w in command for w in ["calendar","open calendar", "schedule", "my schedule"]):
         return open_calendar()
 
     if any(w in command for w in ["system information","system info"]):
         return get_system_info()
+
+    if any(w in command for w in ["flip a coin", "flip coin", "coin flip", "toss a coin"]):
+        return flip_coin()
+
+    if any(w in command for w in ["roll a dice", "roll dice", "roll the dice", "dice"]):
+        return roll_dice()
+
+    if any(w in command for w in ["fact", "tell me a fact", "interesting fact", "something interesting"]):
+        return tell_fact()
 
     if any(w in command for w in ["screenshot","take a screenshot"]):
         return take_screenshots()
@@ -366,6 +567,9 @@ def process_command(command: str)-> str:
 
     if any(w in command for w in ["help","what can you do","commands"]):
         return get_help()
+
+    if any(ext in command for ext in ["goodbye", "exit", "stop", "quit", "bye"]):
+        return "EXIT: Shutting down. Goodbye!"
         
     small_talk=get_small_talk_response(command)
     if small_talk:

@@ -14,7 +14,7 @@ for i, voice in enumerate(voices):
 # Use voice index 0 by default
 engine.setProperty('voice', voices[1].id)
 
-engine.say("Hello. I am automoto, your personal AI assistant.")
+engine.say("Hello. I am AutoMoto, your personal AI assistant.")
 engine.say("Nice to meet you.")
 engine.runAndWait()
 
