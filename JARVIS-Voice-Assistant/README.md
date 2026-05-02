@@ -1,199 +1,62 @@
-# AutoMoto — Personal AI Voice Assistant System
+# 🤖 JARVIS & AutoMoto — AI Voice Assistant System
 
-> An intelligent, voice-controlled personal assistant inspired by AutoMoto.  
-> Built with Python — two independent modules demonstrating different AI assistant approaches.
-
----
-
-## Project Structure
-
-```text
-AutoMoto-Voice-Assistant/
-│
-├── module1/                  # CLI Voice Assistant
-│   ├── main.py               # Main event loop
-│   ├── speech.py             # listen() and speak() engine
-│   ├── commands.py           # All feature functions
-│   ├── config.py             # Settings and constants
-│   ├── logger.py             # Logging module
-│   └── history.py            # Command history tracker
-│
-├── module2/                  # Web AI Assistant
-│   ├── app.py                # Streamlit frontend
-│   ├── speech_handler.py     # Voice input handler
-│   ├── ai_handler.py         # Gemini AI integration
-│   └── config.py             # Module 2 settings
-│
-├── shared/
-│   └── speech_utils.py       # Shared speech utilities
-│
-├── logs/                     # Auto-generated at runtime
-│   ├── automoto.log
-│   ├── errors.log
-│   └── session.log
-│
-├── .env                      # API keys (never committed)
-├── .gitignore
-├── requirements_module1.txt
-├── requirements_module2.txt
-└── README.md
-```
+Welcome to the **Ultimate AI Voice Assistant System**. This project contains two independent modules demonstrating different approaches to building an intelligent personal assistant.
 
 ---
 
-## Project Overview
+## 📂 Project Structure
 
-| | Module 1 — AutoMoto CLI | Module 2 — Web AI Assistant |
-|---|---|---|
-| **Interface** | Command Line | Streamlit Web UI |
-| **AI Engine** | Rule-based NLP | Google Gemini 2.5 Flash |
-| **Voice Input** | SpeechRecognition + PyAudio | SpeechRecognition + PyAudio |
-| **Voice Output** | pyttsx3 (offline SAPI5) | gTTS (Google Text-to-Speech) |
-| **Languages** | English | Multilingual |
-| **Internet** | Optional | Required |
+### [Module 1: JARVIS (CLI)](./module1/)
+An offline-capable, rule-based assistant inspired by Iron Man's JARVIS.
+- **Interface**: Command Line
+- **Engine**: Rule-based Intent Matching
+- **Voice**: Windows SAPI5 (Offline)
+- **Features**: System control, Wikipedia, Music, History Tracking.
+
+### [Module 2: AutoMoto (Web)](./module2/)
+A modern, multilingual web assistant powered by cutting-edge AI.
+- **Interface**: Streamlit Web UI
+- **Engine**: Google Gemini 2.5 Flash
+- **Voice**: gTTS (Online)
+- **Features**: Multilingual support, Advanced Reasoning, Audio Downloads.
 
 ---
 
-## Setup & Installation
+## 🚀 Quick Start
 
 ### Prerequisites
 - Python 3.11.9
 - Windows 10/11
-- Working microphone
-- Internet connection (for Speech API + Wikipedia)
+- Working Microphone
 
-### Module 1 — CLI Assistant
-
+### Installation
 ```bash
-# Clone the repo
+# Clone the repository
 git clone https://github.com/kbharathparmaar369/JARVIS-Voice-Assistant.git
-cd AutoMoto-Voice-Assistant
+cd JARVIS-Voice-Assistant
 
-# Create virtual environment
-python -m venv venv
-venv\Scripts\activate
-
-# Install dependencies
+# Setup Module 1 (CLI)
 pip install -r requirements_module1.txt
-
-# Run AutoMoto
 python -m module1.main
 ```
 
-### Module 2 — Web Assistant
+---
 
-```bash
-# Install dependencies
-pip install -r requirements_module2.txt
-
-# Add your Gemini API key to .env
-echo GEMINI_API_KEY=your_key_here > .env
-
-# Run the web app
-streamlit run module2/app.py
-```
+## 🛠️ Tech Stack
+- **Language**: Python
+- **Speech**: SpeechRecognition, PyAudio, pyttsx3, gTTS
+- **AI**: Google Gemini API
+- **UI**: Streamlit (Module 2)
+- **Knowledge**: Wikipedia API
 
 ---
 
-## Features
-
-### Module 1 — AutoMoto CLI
-- Real-time voice command recognition
-- Time and date queries
-- Wikipedia search and summarization
-- Open system apps: Calculator, Notepad, CMD, Paint, File Explorer
-- Play random music from local folder
-- Google and YouTube search via browser
-- Google Calendar integration
-- System information retrieval
-- Screenshot capture
-- 25+ small talk and personality responses
-- Programming jokes and random facts
-- Coin flip and dice roll
-- Full session logging (3 log files)
-- Command history tracking
-
-### Module 2 — Multilingual Web Assistant *(Week 2)*
-- Google Gemini 2.5 Flash AI responses
-- Voice and text input
-- Multilingual support
-- Audio response playback and download
-- Chat history display
-- Production logging
-
----
-
-## Voice Commands — Module 1
-
-| Category | Command Examples |
-|---|---|
-| **Time & Date** | "What time is it", "What is today's date" |
-| **Wikipedia** | "Search Wikipedia artificial intelligence" |
-| **Web** | "Search Google Python tutorials", "Open YouTube lofi" |
-| **Apps** | "Open calculator", "Open notepad", "Open paint" |
-| **Music** | "Play music", "Play a song" |
-| **System** | "System info", "Take screenshot" |
-| **Fun** | "Tell me a joke", "Flip a coin", "Roll a dice" |
-| **Chat** | "Who are you", "How are you", "Tell me a story" |
-| **Control** | "Help", "History", "Goodbye" |
-
----
-
-## Architecture
-
-```text
-User Voice Input
-│
-▼
-SpeechRecognition + PyAudio
-│
-▼
-Command Processor (Intent Matching)
-│
-┌──┴───────────────────────┐
-│                          │
-▼                          ▼
-Feature Functions         Small Talk
-(time, wiki, apps...)    (personality)
-│                          │
-└──────────┬───────────────┘
-│
-▼
-pyttsx3 TTS
-│
-▼
-Speaker Output
-│
-▼
-Logger + History
-```
-
----
-
-## Tech Stack
-
-- **Language**: Python 3.11+
-- **Voice Recognition**: SpeechRecognition, PyAudio
-- **Speech Synthesis**: pyttsx3 (Offline), gTTS (Online)
-- **AI Models**: Google Gemini (Module 2)
-- **Utilities**: Wikipedia API, Webbrowser, Subprocess, Logging
-
----
-
-## Demo
-
-> 📹 Demo video link here — add after recording
-
----
-
-## Author
-
+## 👤 Author
 **Bharath**  
 Engineering Student  
-[GitHub](https://github.com/YOUR_USERNAME) · [LinkedIn](https://linkedin.com/in/YOUR_USERNAME)
+[GitHub](https://github.com/kbharathparmaar369) · [LinkedIn](https://linkedin.com/in/kbharathparmaar369)
 
 ---
 
-## License
-
-MIT License — feel free to use and extend this project.
+## 📄 License
+MIT License

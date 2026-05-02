@@ -1,7 +1,7 @@
 import os
 # Assistant identity
-ASSISTANT_NAME = "AutoMoto"
-ASSISTANT_OWNER = "Bharath"          
+ASSISTANT_NAME = "Jarvis"
+ASSISTANT_OWNER = "Sir"          
 
 # Text-to-Speech settings
 TTS_ENGINE     = "sapi5"         # Windows SAPI5
@@ -17,7 +17,7 @@ SR_LISTEN_TIMEOUT     = 5        # Seconds to wait for speech to start
 SR_PHRASE_LIMIT       = 10       # Max seconds for a single phrase
 
 # Logging
-LOG_FILE = "logs/automoto.log"
+LOG_FILE = "logs/jarvis.log"
 MAX_HISTORY = 10
 
 APP_PATHS = {

@@ -287,7 +287,14 @@ JOKES = [
     "Why do Java developers wear glasses? Because they don't C#... and they've been staring at stack traces until their will to live blurred.",
     "A SQL query walks into a bar, walks up to two tables and asks: 'Can I join you?' The bartender replies, 'Sorry, this is a suicide support group — no joins allowed.'",
     "Why was the computer cold? It left its Windows open... then jumped out the 12th floor after seeing the blue screen of its own existence.",
-    "How many programmers does it take to change a light bulb? None. They're too busy googling 'why does my life feel like an infinite loop of despair?'"
+    "How many programmers does it take to change a light bulb? None. They're too busy googling 'why does my life feel like an infinite loop of despair?'",
+    "Why do programmers always mix up Christmas and Halloween? Because Oct 31 == Dec 25.",
+    "A programmer's wife tells him: 'Go to the store and get a loaf of bread. If they have eggs, get a dozen.' He returns with 12 loaves of bread.",
+    "How many programmers does it take to change a light bulb? None, that's a hardware problem.",
+    "Real programmers count from 0.",
+    "What is the most used language in programming? Profanity.",
+    "I'd tell you a joke about UDP, but you might not get it.",
+    "A SQL query walks into a bar and sees two tables. He walks up to them and says, 'Can I join you?'"
 ]
 FACTS = [
     "Honey never spoils. Archaeologists have found 3000-year-old honey still edible.",
