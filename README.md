@@ -364,7 +364,7 @@ Pull requests are welcome. For major changes please open an issue first.
 
 ## 👨‍💻 Author
 
-**Bharath Kumar**
+**Bharath Pumar**
 Engineering Student
 
 [![GitHub](https://img.shields.io/badge/GitHub-kbharathparmaar369-181717?style=flat&logo=github)](https://github.com/kbharathparmaar369)
