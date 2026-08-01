@@ -66,9 +66,7 @@ This is **Project 1** of a two-part AI assistant system. [Project 2 →](https:/
 
 ---
 
-## 📹 Demo
 
-> 🎬 **[Watch the demo video here](#)** ← *(add your YouTube/Loom link)*
 
 ```
 $ python main.py
